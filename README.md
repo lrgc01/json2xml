@@ -10,16 +10,17 @@ reception -> decryption -> XML
 
 ## Contents
 
- - docker directory: 
+ - build directory: 
    - Dockerfile to build the image 
    - plus some runtime and startup scripts 
    - as well as a file containing the key to do the crypto
 
- - docker-compose directory:
+ - run directory:
    - json2xml subdir: docker-compose.yml to run as "docker-compose up -d"
      - Will deploy container "send" (A) and container "recv" (B) 
      - Some environment variables must be changed: *DOCK_scpHost*
        - has to be the host that runs the container B (the receiver)
+         - (*localhost* might be safe if the two containers run in the same host)
 
  - Summary of the runtime containers:
      - send container:
@@ -38,5 +39,20 @@ reception -> decryption -> XML
      - Python3 relevant packages: xmltodict cryptography
      - Generates the SSH key-pair to connect to the doppleganger container
      - Copy the key to crypt, the startup script, the sender and receiver python scripts
-     - Exposes port 22 although only in receiver mode it will run ssh server
+     - Exposes port 22 although only in receiver mode it will run the ssh server
 
+## Running
+
+  - To run the containers with docker-compose:
+    - Change to the subdir 'run/json2xml' and 
+    - Issue the command 'docker-compose up -d'
+
+  - To stop and remove the containers with docker-compose:
+    - Change to the subdir 'run/json2xml' and 
+    - docker-compose down
+    - Use stop/start to do stop and run again without removal
+
+  - To create the docker image:
+    - Change to the subdir 'build'
+    - Issue the command: 'docker build -t yourTAGhere -f Dockerfile .' # don't forget the final dot
+    - Change the image name to your TAG inside run/json2xml/docker-compose.yml file
