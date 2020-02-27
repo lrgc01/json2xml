@@ -31,6 +31,10 @@ reception -> decryption -> XML
      - recv container:
        - /workdir/recv_crypt - files transfered from sender container (A)
        - /workdir/recv_xml   - files in XML format after decryption
+     - both:
+       - Have the same startup_script.sh that read a variable to decide with mode to run: send or recv
+       - If in receiver mode starts sshd first (as root)
+       - then *su* to an ordinary user and run the respetive python script
 
  - Summary of the Dockerfile:
      - Based on debian:strech-slim
@@ -41,11 +45,16 @@ reception -> decryption -> XML
      - Copy the key to crypt, the startup script, the sender and receiver python scripts
      - Exposes port 22 although only in receiver mode it will run the ssh server
 
+ - Summary of the python scripts:
+     - All scripts keep in an infinite loop looking for new files each 10 seconds
+     - script_A.py - sender - read JSON, transform into XML, crytpograph and send to receiver
+     - script_B.py - receiver - read the crypto data, decrypt and write to a XML file
+
 ## Running
 
   - To run the containers with docker-compose:
     - Change to the subdir 'run/json2xml' and 
-    - Issue the command:
+    - issue the command:
 ```
     docker-compose up -d
 ```
