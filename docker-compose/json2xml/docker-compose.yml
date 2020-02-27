@@ -1,0 +1,42 @@
+version: '3.3'
+services:
+  recv:
+        image: lrgc01/json-xml-python3
+        volumes:
+        - type: volume
+          source: recv
+          target: /workdir
+        working_dir: /workdir
+        ports:
+          - "0.0.0.0:2222:22"
+        environment  :
+          - DOCK_KEYFILE=/start/key
+          - DOCK_SCRIPTDIR=/start
+          - DOCK_scpPort=2222
+          - DOCK_scpUser=pyuser
+          - DOCK_RUNUSER=pyuser
+          - DOCK_WORKDIR=/workdir
+          - DOCK_SCRIPTMODE=B
+
+  send:
+        image: lrgc01/json-xml-python3
+        volumes:
+          - type: volume
+            source: send
+            target: /workdir
+        working_dir: /workdir
+        environment  :
+          - DOCK_KEYFILE=/start/key
+          - DOCK_SCRIPTDIR=/start
+          - DOCK_scpPort=2222
+          - DOCK_scpHost=192.168.56.191
+          - DOCK_scpUser=pyuser
+          - DOCK_scpDstPath=/workdir/recv_crypt
+          - DOCK_RUNUSER=pyuser
+          - DOCK_WORKDIR=/workdir
+          - DOCK_SCRIPTMODE=A
+
+volumes:
+  recv:
+  send:
+
