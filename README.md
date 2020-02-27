@@ -77,4 +77,4 @@ reception -> decryption -> XML
     docker build -t yourTAGhere -f Dockerfile .    # don't forget the final dot
 ```
 
-    - Change the image name to your TAG inside 'run/json2xml/docker-compose.yml' file
+    Change the image name to your TAG inside 'run/json2xml/docker-compose.yml' file
