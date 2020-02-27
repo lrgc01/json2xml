@@ -56,24 +56,19 @@ reception -> decryption -> XML
     - Change to the subdir 'run/json2xml' and 
     - issue the command:
 
-```
-    docker-compose up -d
-```
+`docker-compose up -d`
 
   - To stop and remove the containers with docker-compose:
     - Change to the subdir 'run/json2xml' and 
 
-```
-    docker-compose down
-```
+`docker-compose down`
 
     - Use stop/start to do stop and run again without removal
 
   - To create the docker image:
     - Change to the subdir 'build'
     - Issue the command:
-```
-    docker build -t yourTAGhere -f Dockerfile .    # don't forget the final dot
 
+`docker build -t yourTAGhere -f Dockerfile .    # don't forget the final dot `
 
     - Change the image name to your TAG inside 'run/json2xml/docker-compose.yml' file
