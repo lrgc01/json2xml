@@ -85,6 +85,6 @@ reception -> decryption -> XML
 
  - Summary of the python scripts:
      - All scripts keep in an infinite loop looking for new files each 10 seconds
-     - script_A.py - sender - read JSON, transform into XML, crytpograph and send to receiver
+     - script_A.py - sender - read JSON, transform into XML, cryptograph it and send the crypto file to the receiver
      - script_B.py - receiver - read the crypto data, decrypt and write to a XML file
 
