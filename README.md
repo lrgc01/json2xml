@@ -11,40 +11,40 @@ reception -> decryption -> XML
 ## Running
 
   ### To run the containers with docker-compose:
-    - Change to the subdir 'run/json2xml' and 
-    - issue the command:
+  - Change to the subdir 'run/json2xml' and 
+  - issue the command:
 
-       `docker-compose up -d`
+     `docker-compose up -d`
 
   ### To stop and remove the containers with docker-compose:
-    - Change to the subdir 'run/json2xml' and 
+  - Change to the subdir 'run/json2xml' and 
 
-       `docker-compose down`
-       - Use stop/start to do stop and run again without removal
+     `docker-compose down`
+     - Use stop/start to do stop and run again without removal
 
 
   ### To copy JSON files to be transfered and converted to XML:
-    - docker-compose lacks the ability to copy into a container, so use 'docker cp' instead:
-      - Check the names of the containers, usually: json2xml_send_1 and json2xml_recv_1 - will use json2xml_send_1
-      - Copy any JSON file, no matter its name/suffix, to the /workdir/json_input directory inside the container:
+  - docker-compose lacks the ability to copy into a container, so use 'docker cp' instead:
+    - Check the names of the containers, usually: json2xml_send_1 and json2xml_recv_1 - will use json2xml_send_1
+    - Copy any JSON file, no matter its name/suffix, to the /workdir/json_input directory inside the container:
 
-        `docker cp myjsonfile.anysuffix json2xml_send_1:/workdir/json_input`
+      `docker cp myjsonfile.anysuffix json2xml_send_1:/workdir/json_input`
 
-    - Check the result in the receiver's subdirectory named /workdir/recv\_xml:
+  - Check the result in the receiver's subdirectory named /workdir/recv\_xml:
 
-        `docker-compose exec recv ls -l /workdir/recv_xml`
+      `docker-compose exec recv ls -l /workdir/recv_xml`
 
-    - Check the whole tree:
+  - Check the whole tree:
 
-        `docker-compose exec recv ls -ltrR /workdir`
+      `docker-compose exec recv ls -ltrR /workdir`
 
   ### To create the docker image:
-    - Change to the subdir 'build'
-    - Issue the command:
+  - Change to the subdir 'build'
+  - Issue the command:
 
-        `docker build -t yourTAGhere -f Dockerfile .    # don't forget the final dot `
+      `docker build -t yourTAGhere -f Dockerfile .    # don't forget the final dot `
 
-      - Change the image name to your TAG inside 'run/json2xml/docker-compose.yml' file
+    - Change the image name to your TAG inside 'run/json2xml/docker-compose.yml' file
 
 ## Contents
 
