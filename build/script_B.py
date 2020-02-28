@@ -25,13 +25,16 @@ def getKey(key_file_name):
             key_fd.close()
         return key
     except:
-        print ("No key file to get the decrypt/encrypt key from. Aborting.\n")
+        logmsg ("No key file to get the decrypt/encrypt key from. Aborting.")
         exit(10)
 
 def readBinData(in_file):
     # Read as binary 
     with open(in_file, "rb") as in_fd:
-        input_data = in_fd.read()
+        try:
+            input_data = in_fd.read()
+        except:
+            logmsg("Seems that cannot read input crypt file. Going further.")
         in_fd.close()
     return input_data
 
@@ -46,7 +49,10 @@ def decryptDataToStr(in_data,key):
 def writeStrOut(out_file,str_data):
     # Write string out
     with open(out_file, "w") as out_fd:
-        out_fd.write(str_data)
+        try:
+            out_fd.write(str_data)
+        except:
+            logmsg("Something went wrong with data xml data to write. Continue anyway.")
         out_fd.close()
 
 #

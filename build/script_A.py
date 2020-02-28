@@ -51,8 +51,8 @@ def getInputAsDict (json_file):
         try:
             json_as_dict = json.load(in_fd)
         except:
-            print ("Input file does not seem to be a valid JSON file. Exiting.\n")
-            exit(10)
+            print ("Input file does not seem to be a valid JSON file. Skipping.\n")
+            json_as_dict = None
         in_fd.close()
     return json_as_dict
 
@@ -64,7 +64,10 @@ def writeToXMLFile(dict_data,xml_file_name):
     xml_content = xmltodict.unparse(my_input, pretty=True)
     # Write the xml file
     with open(xml_file_name, "w") as xml_fd:
-        xml_fd.write(xml_content)
+        try:
+            xml_fd.write(xml_content)
+        except:
+            logmsg("Something went wrong with xml content. Continue anyway.")
         xml_fd.close()
     return xml_content
 
@@ -75,7 +78,10 @@ def writeCryptXMLFile(xml_content,key,crypt_file_name):
 
     # Finally write ecrypted data
     with open(crypt_file_name, "wb") as out_fd:
-        out_fd.write(encrypted_data)
+        try:
+            out_fd.write(encrypted_data)
+        except:
+            logmsg("Something went wrong with the crypt content. Maybe it is not binary data. Continue anyway.")
         out_fd.close()
 
 #
