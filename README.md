@@ -10,20 +10,20 @@ reception -> decryption -> XML
 
 ## Running
 
-  - To run the containers with docker-compose:
+  ### To run the containers with docker-compose:
     - Change to the subdir 'run/json2xml' and 
     - issue the command:
 
        `docker-compose up -d`
 
-  - To stop and remove the containers with docker-compose:
+  ### To stop and remove the containers with docker-compose:
     - Change to the subdir 'run/json2xml' and 
 
        `docker-compose down`
        - Use stop/start to do stop and run again without removal
 
 
-  - To copy JSON files to be transfered and converted to XML:
+  ### To copy JSON files to be transfered and converted to XML:
     - docker-compose lacks the ability to copy into a container, so use 'docker cp' instead:
       - Check the names of the containers, usually: json2xml_send_1 and json2xml_recv_1 - will use json2xml_send_1
       - Copy any JSON file, no matter its name/suffix, to the /workdir/json_input directory inside the container:
@@ -38,7 +38,7 @@ reception -> decryption -> XML
 
         `docker-compose exec recv ls -ltrR /workdir`
 
-  - To create the docker image:
+  ### To create the docker image:
     - Change to the subdir 'build'
     - Issue the command:
 
