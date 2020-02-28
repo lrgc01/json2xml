@@ -25,8 +25,8 @@ reception -> decryption -> XML
 
   ### To copy JSON files to be transfered and converted to XML:
   - docker-compose lacks the ability to copy into a container, so use 'docker cp' instead:
-    - Check the names of the containers, usually: json2xml_send_1 and json2xml_recv_1 - will use json2xml_send_1
-    - Copy any JSON file, no matter its name/suffix, to the /workdir/json_input directory inside the container:
+    - Check the names of the containers, usually: 'json2xml\_send\_1' and 'json2xml\_recv\_1' - will use **json2xml\_send\_1**
+    - Copy any JSON file (no matter its name/suffix) to the '/workdir/json\_input' directory inside the container:
 
       `docker cp myjsonfile.anysuffix json2xml_send_1:/workdir/json_input`
 
